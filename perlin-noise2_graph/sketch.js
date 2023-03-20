@@ -1,10 +1,10 @@
-const WIDTH = 500;
-const HEIGHT = 500;
-
-let xOffset = 0;
+const width = 500;
+const height = 500;
+const increment = 0.01;
+let start = 0;
 
 function setup() {
-    createCanvas(WIDTH, HEIGHT)
+    createCanvas(width, height)
 }
   
 function draw() {
@@ -12,11 +12,13 @@ function draw() {
     stroke(255);
     noFill();
     beginShape();
-    for (let x = 0; x < WIDTH; x++) {
-        let y = noise(xOffset) * HEIGHT;
+    let xOffset = start;
+    for (let x = 0; x < width; x++) {
+        let y = noise(xOffset) * height;
         vertex(x, y);
-        xOffset += 0.01;
+        xOffset += increment;
     }
     endShape();
-    noLoop();
+    // noLoop();
+    start += increment;
 }
