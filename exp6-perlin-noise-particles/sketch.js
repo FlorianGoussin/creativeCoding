@@ -1,7 +1,12 @@
 window.increment = 0.1;
-const width = 200;
+// const width = 1280;
+// const height = 800;
+const width = 400;
 const height = 200;
 const scaleVal = 10; // number of pixels for each vector
+const particlesLength = 2500;
+const vectMagnitude = 5;
+
 let cols, rows;
 let zOffset = 0;
 
@@ -14,7 +19,7 @@ function setup() {
     cols = floor(width / scaleVal);
     rows = floor(height / scaleVal);
 
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < particlesLength; i++) {
         particles[i] = new Particle(random(width), random(height));
     }
 
@@ -29,9 +34,9 @@ function draw() {
         let xOffset = 0;
         for (let y = 0; y < rows; y++) {
             const index = x + y * cols; // for flowfield
-            const r = noise(xOffset, yOffset, zOffset) * TWO_PI * 4;
+            const r = noise(xOffset, yOffset, zOffset) * TWO_PI * 2;
             const vect = p5.Vector.fromAngle(r);
-            vect.setMag(1);
+            vect.setMag(vectMagnitude);
 
             // drawVector(vect, x, y);
 
@@ -57,7 +62,6 @@ function draw() {
     }
 
     for (let particle of particles) {
-        // particle.edges(width, height);
         checkEdges(particle);
         particle.update();
         particle.show();
