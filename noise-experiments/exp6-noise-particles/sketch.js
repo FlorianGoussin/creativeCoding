@@ -38,7 +38,7 @@ function draw() {
             const vect = p5.Vector.fromAngle(r);
             vect.setMag(vectMagnitude);
 
-            // drawVector(vect, x, y);
+            drawVector(vect, x, y);
 
             // fill(random(255));
             // fill(r);
